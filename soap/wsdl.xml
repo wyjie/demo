@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="demo"
+    targetNamespace="http://localhost/demo/demo/soap"
+    xmlns:tns="http://localhost/demo/demo/soap"
+    xmlns:soap="">
+
+    <!-- 服务 -->
+    <service name="demo">
+        <!-- 频道 -->
+        <port name='cartSoap' binding='tns:cartSoap'>
+            <soap:address location="http://localhost/demo/demo/soap/soapServer.php"
+        </port>
+    </service>
+</definitions>

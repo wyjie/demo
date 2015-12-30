@@ -1,0 +1,61 @@
+body{
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0;
+	width: 1000px;
+	height: 100%;
+	background: #F4F4F4;
+}
+
+#left{
+	background: #C6D9F1;
+	height: 100%;
+	float: left;
+}
+.navSpan{
+	display: block;
+	font-size: 40px;
+	font-family: "黑体";
+	margin-top: 30px;
+	line-height: 55px;
+}
+
+.navSpan:hover{
+	background: #8EB4E3;
+}
+
+.sonNavSpan{
+	display: block;
+	font-size: 30px;
+	font-family: "黑体";
+	margin-top: 15px;
+	line-height: 35px;
+}
+
+.sonNavSpan a{
+	color: #5AD7F3;
+	text-decoration: none;
+}
+
+.sonNavsDiv{
+	display: none;
+	margin-left: 30px;
+}
+
+.navLink{
+	color: #fff;
+	text-decoration: none;
+}
+
+#right{
+	width: 750px;
+}
+
+#caozuoTable{
+	margin-left: auto;
+	margin-right: auto;
+	width: 600px;
+	height: 100px;
+	align: center;
+	rules: rows;
+}

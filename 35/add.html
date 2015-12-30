@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>设备添加</title>
+	 <link href="./css/style.css" rel="stylesheet" type="text/css"/>
+	 <link href="./css/add.css" rel="stylesheet" type="text/css"/>
+	 <script type="text/javascript" src="./js/jquery-1.10.2.js" ></script>
+</head>
+<body>
+	<!-- left 侧边栏 start -->
+	<div id="left">
+		<span class="navSpan" data-tags="1">
+			<a class="navLink" href="list.html">设备列表</a>
+			<div class="sonNavsDiv" data-tags-div="1">
+				<span class="sonNavSpan"><a href="left.html">子栏目1</a></span>
+				<span class="sonNavSpan"><a href="add.html">子栏目2</a></span>
+			</div>			
+		</span>
+
+		<span class="navSpan" data-tags="2">
+			<a class="navLink" href="add.html">添加实验设备</a>
+			<div class="sonNavsDiv" data-tags-div="2">
+				<span class="sonNavSpan"><a href="">子栏目1</a></span>
+				<span class="sonNavSpan"><a href="">子栏目2</a></span>
+			</div>			
+		</span>
+
+		<span class="navSpan" data-tags="3">
+			<a class="navLink" href="yuyue.html">预约实验设备</a>
+			<div class="sonNavsDiv" data-tags-div="3">
+				<span class="sonNavSpan"><a href="">子栏目1</a></span>
+				<span class="sonNavSpan"><a href="">子栏目2</a></span>
+			</div>			
+		</span>
+
+		<span class="navSpan" data-tags="4">
+			<a class="navLink" href="#">添加实验设备</a>
+			<div class="sonNavsDiv" data-tags-div="4">
+				<span class="sonNavSpan"><a href="">子栏目1</a></span>
+				
+				<span class="sonNavSpan"><a href="">子栏目2</a></span>
+			</div>			
+		</span>
+
+		<span class="navSpan" data-tags="5">
+			<a class="navLink" href="#">添加实验设备</a>
+			<div class="sonNavsDiv" data-tags-div="5">
+				<span class="sonNavSpan"><a href="">子栏目1</a></span>
+				<span class="sonNavSpan"><a href="">子栏目2</a></span>
+			</div>			
+		</span>
+
+		<span class="navSpan" data-tags="6">
+			<a class="navLink" href="#">添加实验设备</a>
+			<div class="sonNavsDiv" data-tags-div="6">
+				<span class="sonNavSpan"><a href="">子栏目1</a></span>
+				<span class="sonNavSpan"><a href="">子栏目2</a></span>
+			</div>			
+		</span>
+
+		<span class="navSpan" data-tags="7">
+			<a class="navLink" href="#">添加实验设备</a>
+			<div class="sonNavsDiv" data-tags-div="7">
+				<span class="sonNavSpan"><a href="">子栏目1</a></span>
+				<span class="sonNavSpan"><a href="">子栏目2</a></span>
+			</div>			
+		</span>
+
+		<span class="navSpan" data-tags="8">
+			<a class="navLink" href="#">添加实验设备</a>
+			<div class="sonNavsDiv" data-tags-div="8">
+				<span class="sonNavSpan"><a href="">子栏目1</a></span>
+				<span class="sonNavSpan"><a href="">子栏目2</a></span>
+			</div>			
+		</span>
+
+		
+	</div>
+	<!-- left 侧边栏 end -->
+
+	<!-- 添加设备 add start -->
+	<div id="add">
+		<span><h1>添加实验项目</h1></span>
+		<div>
+			<form action="01.php" method="post">
+				<span class="formSpan">试验项目名称:</span><input type="text" name='name'><br /><br />
+				<span class="formSpan">　　　　价格:</span><input type="text" name="price"><br /><br />
+				<span class="formSpan">　　设备介绍:</span><textarea name="desc" cols="45" rows="12">输入设备描述。。。</textarea>
+				<br />
+				<input type="submit" value="添加">
+			</form>
+		</div>
+	</div>
+	<!-- 添加设备 add end -->
+
+</body>
+<script>
+	$(function(){
+
+		var tags = 0;
+
+		$(".navSpan").click(function(){
+			var thisTags = $(this).data('tags');
+
+			//判断是否已经打开一个子导航栏
+			if(isSonNavOpen())
+			{
+				//判断是否和当前点击的是同一个
+				if(tags == thisTags)		//是同一个，关闭该子导航
+				{
+					closeSonNav(tags);
+				}
+				else									//不是同一个, 关闭旧的并打开一个新的
+				{
+					closeSonNav(tags);
+					openSonNav(thisTags);
+				}
+			}
+			else			//当前没有子导航打开，打开一个新的
+			{
+				openSonNav(thisTags);
+			}
+			
+		});
+
+		//判断是否已经打开一个子导航栏
+		function isSonNavOpen()
+		{
+			if(tags != 0)		//已经打开
+			{
+				return true;
+			}
+
+			return false;
+		}
+
+		//打开一个子导航
+		function openSonNav(thisTags)
+		{
+			var sonNavsDiv = $("div [data-tags-div="+ thisTags +"]");
+
+			//显示子导航栏
+			sonNavsDiv.css("display", "block");
+
+			tags = thisTags;
+		}
+
+		//关闭一个子导航
+		function closeSonNav(thisTags)
+		{
+			var sonNavsDiv = $("div [data-tags-div="+ thisTags +"]");
+			
+			sonNavsDiv.css("display", "none");	
+
+			//关闭后把标记清0， 否则打开一个后，一直是已经打开状态
+			tags = 0;
+		}
+	});
+</script>
+</html>

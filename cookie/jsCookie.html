@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>cookie</title>
+</head>
+<body>
+    <script>
+    function cookie (name, value, options)
+    {
+        if(typeof value != 'undefined')
+        {
+            //如果optinos未指定，让其等于一个空的Obj
+            options = options || {};
+            if (value === null)
+            {
+                value = '';
+                options.expires = -1;       //失效日期
+            }
+
+            var expires = '';
+
+            //判读失效日期是否存在，且类型为number或Date
+            if (options.expires && (typeof options.expires ==  'number' || options.expires.toUTCString))
+            {
+                var date;
+                if(typeof options.expires == 'number')
+                {
+                    date = new Date();
+                    date.setTime(date.getTime() + (options.expires * 24 * 60 * 60 * 1000));
+                }
+                else
+                {
+                    date = options.expires;
+                }
+
+                expires = '; expires=' + date.toUTCString();
+            }
+
+            var path = options.path ? '; path=' + (options.path) : '';
+            var domain = options.domain ? '; domain=' + (options.domain) : '';
+            var secure = options.secure ? '; secure' : '';
+
+            document.cookie = [name, '=', encodeURIComponent(value), expires, path, domain, secure].join('');
+            console.log(document.cookie);
+        }
+        else            //typeof value == 'undefined'
+        {
+            var cookieValue = null;
+            if(document.cookie && document.cookie != '')
+            {
+                var cookies = document.cookie.split(';');       //通过';'把cookie分割成字符串数组
+                for (var i = 0; i < cookies.length; i++)
+                {
+                    var cookie = (cookie[i]).replace(/^\s+|\s+$/g, "");
+                    if(cookie.substring(0, name.length + 1) == (name + '='))
+                    {
+                        cookieValue = decodeURLComponent(cookie.substring(name.length + 1));
+
+                        break;
+                    }
+                }
+            }
+
+            return cookieValue;
+        }
+    }
+    cookie("name", "baicai");
+    </script>
+</body>
+</html>

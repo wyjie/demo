@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title></title>
+</head>
+<script>
+var userAgent = navigator.userAgent.toLowerCase();
+var is_opera = userAgent.indexOf('opera') != -1 && opera.version();
+var is_saf = userAgent.indexOf('applewebkit') != -1 || navigator.vendor == 'Apple Computer, Inc.';
+var is_webtv = userAgent.indexOf('webtv') != -1;
+var is_ie = (userAgent.indexOf('msie') != -1 && !is_opera && !is_saf && !is_webtv) && userAgent.substr(userAgent.indexOf('msie') + 5, 3);
+function runCode(obj) {
+         var winname = window.open('', "_blank", '');
+         winname.document.open('text/html', 'replace');
+         winname.document.write(obj.value);
+         winname.document.close();
+}
+function saveCode(obj) {
+         var winname = window.open('', '_blank', 'top=10000');
+         winname.document.open('text/html', 'replace');
+         winname.document.write(obj.value);
+         winname.document.execCommand('saveas','','code.htm');
+         winname.close();
+}
+function copycode(obj) {
+if(is_ie && obj.style.display != 'none') {
+   var rng = document.body.createTextRange();
+   rng.moveToElementText(obj);
+   rng.scrollIntoView();
+   rng.select();
+   rng.execCommand("Copy");
+   rng.collapse(false);
+}
+}
+</script>
+<body>
+   <h3><a href="js.html">js</a></h3><h3><a href="php.html">php</a></h3> 
+   <textarea id=code style="width:700px; height:200px;border: 1px solid #68BBE0;background-color: #F2FBFF;"></textarea>   
+<br />
+<input type="button"onclick=runCode(code) value="运行代码" style="border:1px solid #000;color:#FFFFFF;padding-top:5px;background-color: #000;"> 
+<input type="button"onclick=copycode(code) style="border:1px solid #000;color:#FFFFFF;padding-top:5px;background-color: #000;"value="复制代码" onclick="copycode(runcode3)"> <input type="button"onclick=saveCode(code) style="border:1px solid #000;color:#FFFFFF;padding-top:5px;background-color: #000;"value="另存代码" onclick="saveCode(runcode3)">
+</body>
+</html>
+
+
